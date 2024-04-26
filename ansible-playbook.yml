@@ -33,10 +33,7 @@
         insertafter: '^plugins=\('
         line: "  zsh-autosuggestions"
         state: present
-    - name: Change default shell to Zsh
-      become: yes # This is required to change user settings
-      tasks:
-        - name: Set default shell to Zsh for the specified user
-          ansible.builtin.user:
-            name: "{{ ansible_env.USER }}"
-            shell: "/bin/zsh"
+    - name: Set default shell to Zsh for the specified user
+      ansible.builtin.user:
+        name: "{{ ansible_env.USER }}"
+        shell: "/bin/zsh"

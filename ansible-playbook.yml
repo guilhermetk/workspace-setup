@@ -1,5 +1,5 @@
 - name: Setup Linux Desktop with Oh My Zsh
-  hosts: all
+  hosts: localhost
   become: yes
   tasks:
     - name: Update apt repo and cache on all Debian/Ubuntu machines

@@ -1,13 +1,14 @@
 - name: Setup my development environment
   hosts: localhost
-  become: yes
   tasks:
     - name: Update apt repo and cache on all Debian/Ubuntu machines
+      become: yes
       ansible.builtin.apt:
         update_cache: yes
         cache_valid_time: 3600
 
     - name: Install necessary applications
+      become: yes
       ansible.builtin.apt:
         name:
           - git
@@ -52,7 +53,6 @@
         depth: 1
 
     - name: Change user shell to zsh
-      become: true
       ansible.builtin.user:
         name: "{{ ansible_user_id }}"
         shell: /bin/zsh
@@ -66,5 +66,15 @@
         msg: "Running as user {{ whoami.stdout }}"
 
     - name: Show ansible user
+      debug:
+        msg: "Running as user {{ ansible_user_id }}"
+
+    - name: Show whoami
+      become: yes
+      debug:
+        msg: "Running as user {{ whoami.stdout }}"
+
+    - name: Show ansible user
+      become: yes
       debug:
         msg: "Running as user {{ ansible_user_id }}"

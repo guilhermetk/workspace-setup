@@ -56,7 +56,13 @@
       ansible.builtin.git:
         repo: https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
         dest: ~/.oh-my-zsh/custom/plugins/autoupdate
-        depth: 1
+
+    - name: Configure .zshrc to use plugin
+      ansible.builtin.lineinfile:
+        path: "{{ ansible_env.HOME }}/.zshrc"
+        insertafter: '^plugins=\(git'
+        line: ' zsh-autosuggestions zsyntax-highlighting zsh-completions autoupdate'
+        state: present       depth: 1
 
     - name: change user shell to zsh
       become: yes

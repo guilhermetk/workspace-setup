@@ -1,5 +1,7 @@
 - name: Setup my development environment
   hosts: localhost
+  vars:
+    the_user: "{{ ansible_user_id }}"
   tasks:
     - name: Update apt repo and cache on all Debian/Ubuntu machines
       become: yes
@@ -52,29 +54,8 @@
         dest: ~/.oh-my-zsh/custom/plugins/autoupdate
         depth: 1
 
-    - name: Change user shell to zsh
-      ansible.builtin.user:
-        name: "{{ ansible_user_id }}"
+    - name: change user shell to zsh
+      become: yes
+      user:
+        name: "{{ the_user }}"
         shell: /bin/zsh
-
-    - name: Check effective user
-      command: whoami
-      register: whoami
-
-    - name: Show whoami
-      debug:
-        msg: "Running as user {{ whoami.stdout }}"
-
-    - name: Show ansible user
-      debug:
-        msg: "Running as user {{ ansible_user_id }}"
-
-    - name: Show whoami
-      become: yes
-      debug:
-        msg: "Running as user {{ whoami.stdout }}"
-
-    - name: Show ansible user
-      become: yes
-      debug:
-        msg: "Running as user {{ ansible_user_id }}"

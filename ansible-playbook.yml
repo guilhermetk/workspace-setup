@@ -62,7 +62,7 @@
       ansible.builtin.lineinfile:
         path: "{{ ansible_env.HOME }}/.zshrc"
         regexp: '^plugins=\('
-        line: "plugins=(git zsh-autosuggestions zsyntax-highlighting zsh-completions autoupdate)"
+        line: "plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions autoupdate)"
         state: present
 
     - name: change user shell to zsh

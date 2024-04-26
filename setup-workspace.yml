@@ -22,6 +22,8 @@
           - fd-find
           - fzf
           - zoxide
+          - btop
+          - atuin
         state: present
 
     - name: Download Oh My Zsh installation script

@@ -17,23 +17,12 @@
           - neovim
         state: present
 
-    - name: Install Oh My Zsh for the current user
-      ansible.builtin.shell:
-        cmd: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-        creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+    - name: Download Oh My Zsh installation script
+      get_url:
+        url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+        dest: /tmp/install_ohmyzsh.sh
 
-    - name: Clone zsh-autosuggestions
-      ansible.builtin.git:
-        repo: "https://github.com/zsh-users/zsh-autosuggestions.git"
-        dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
-
-    - name: Configure .zshrc to use plugin
-      ansible.builtin.lineinfile:
-        path: "{{ ansible_env.HOME }}/.zshrc"
-        insertafter: '^plugins=\('
-        line: "  zsh-autosuggestions"
-        state: present
-    - name: Set default shell to Zsh for the specified user
-      ansible.builtin.user:
-        name: "{{ ansible_env.USER }}"
-        shell: "/bin/zsh"
+    - name: Run Oh My Zsh installation script
+      command: sh /tmp/install_ohmyzsh.sh --unattended
+      register: ohmyzsh_result
+      failed_when: "'FAILED' in ohmyzsh_result.stderr"

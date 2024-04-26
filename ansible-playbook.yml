@@ -56,3 +56,15 @@
       ansible.builtin.user:
         name: "{{ ansible_user_id }}"
         shell: /bin/zsh
+
+    - name: Check effective user
+      command: whoami
+      register: whoami
+
+    - name: Show whoami
+      debug:
+        msg: "Running as user {{ whoami.stdout }}"
+
+    - name: Show ansible user
+      debug:
+        msg: "Running as user {{ ansible_user_id }}"

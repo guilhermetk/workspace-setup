@@ -61,13 +61,6 @@
         dest: ~/.oh-my-zsh/custom/plugins/autoupdate
         depth: 1
 
-    - name: Configure .zshrc to use plugin
-      ansible.builtin.lineinfile:
-        path: "{{ ansible_env.HOME }}/.zshrc"
-        regexp: '^plugins=\('
-        line: "plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-completions autoupdate)"
-        state: present
-
     - name: change user shell to zsh
       become: yes
       user:

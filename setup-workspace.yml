@@ -14,6 +14,7 @@
       ansible.builtin.apt:
         name:
           - git
+          - curl
           - build-essential
           - zsh
           - alacritty
@@ -23,7 +24,6 @@
           - fzf
           - zoxide
           - btop
-          - atuin
         state: present
 
     - name: Download Oh My Zsh installation script
@@ -73,8 +73,8 @@
         name: "{{ the_user }}"
         shell: /bin/zsh
 
-    - name: Install nvm
-      ansible.builtin.shell: >
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-      args:
-        creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+    # - name: Install nvm
+    #   ansible.builtin.shell: >
+    #     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    #   args:
+    #     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"

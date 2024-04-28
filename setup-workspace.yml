@@ -131,6 +131,13 @@
         update_cache: true
       become: true
 
+    # Install slack via snap
+    - name: Install Slack
+      community.general.snap:
+        name: slack
+        classic: true
+        state: present
+
     # - name: Install nvm
     #   ansible.builtin.shell: >
     #     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash

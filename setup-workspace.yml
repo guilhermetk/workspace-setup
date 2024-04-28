@@ -135,7 +135,6 @@
     - name: Install Slack
       community.general.snap:
         name: slack
-        classic: true
         state: present
 
     # - name: Install nvm

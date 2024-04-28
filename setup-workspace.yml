@@ -22,7 +22,7 @@
           - solaar
           - build-essential
           - zsh
-          - alacritty
+          # - alacritty
           - neovim
           - ripgrep
           - fd-find

@@ -33,45 +33,9 @@
           - rofi
         state: present
 
-    - name: Download Oh My Zsh installation script
-      get_url:
-        url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-        dest: /tmp/install_ohmyzsh.sh
-
-    - name: Run Oh My Zsh installation script
-      command: sh /tmp/install_ohmyzsh.sh --unattended
-      register: ohmyzsh_result
-      failed_when: "'FAILED' in ohmyzsh_result.stderr"
-
-    - name: Install zsh-autosuggestions plugin # noqa: latest
-      ansible.builtin.git:
-        repo: https://github.com/zsh-users/zsh-autosuggestions
-        dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-        depth: 1
-
-    - name: Install zsh-completions plugin # noqa: latest
-      ansible.builtin.git:
-        repo: https://github.com/zsh-users/zsh-completions
-        dest: ~/.oh-my-zsh/custom/plugins/zsh-completions
-        depth: 1
-
-    - name: Install zsh-syntax-highlighting plugin # noqa: latest
-      ansible.builtin.git:
-        repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
-        dest: ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-        depth: 1
-
-    - name: Install autoupdate-zsh-plugin # noqa: latest
-      ansible.builtin.git:
-        repo: https://github.com/TamCore/autoupdate-oh-my-zsh-plugins
-        dest: ~/.oh-my-zsh/custom/plugins/autoupdate
-        depth: 1
-
-    - name: change user shell to zsh
-      become: yes
-      user:
-        name: "{{ the_user }}"
-        shell: /bin/zsh
+    - name: Run zsh install
+      ansible.builtin.include_tasks:
+        file: ./tasks/zsh.yml
 
     - name: Download dotfiles repo # noqa: latest
       ansible.builtin.git:

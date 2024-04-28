@@ -23,7 +23,6 @@
           - solaar
           - build-essential
           - zsh
-          # - alacritty
           - neovim
           - ripgrep
           - fd-find
@@ -37,36 +36,13 @@
       ansible.builtin.include_tasks:
         file: ./tasks/zsh.yml
 
-    - name: Download dotfiles repo # noqa: latest
-      ansible.builtin.git:
-        repo: https://github.com/guilhermetk/dotfiles.git
-        dest: ~/dotfiles
-        depth: 1
-        force: true
+    - name: Run dotfiles install
+      ansible.builtin.include_tasks:
+        file: ./tasks/dotfiles.yml
 
-    - name: Install dotfiles
-      ansible.builtin.command:
-        cmd: stow .
-        chdir: ~/dotfiles
-
-    # Install nerd fonts
-    - name: ensure fonts directory
-      file:
-        path: "{{ lookup('env', 'HOME') }}/.fonts"
-        state: directory
-
-    - name: Font exists
-      become: true
-      shell: "ls {{ lookup('env', 'HOME') }}/.fonts/FiraCode-Regular.ttf"
-      register: font_exists
-      ignore_errors: yes
-
-    - name: Download Hack
-      when: font_exists is failed
-      ansible.builtin.unarchive:
-        src: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip
-        dest: "{{ lookup('env', 'HOME') }}/.fonts/"
-        remote_src: yes
+    - name: Run dotfiles install
+      ansible.builtin.include_tasks:
+        file: ./tasks/fonts.yml
 
     # Install brave browser
     - name: Check if keyring exists

@@ -1,0 +1,11 @@
+- name: Download dotfiles repo # noqa: latest
+  ansible.builtin.git:
+    repo: https://github.com/guilhermetk/dotfiles.git
+    dest: ~/dotfiles
+    depth: 1
+    force: true
+
+- name: Install dotfiles
+  ansible.builtin.command:
+    cmd: stow .
+    chdir: ~/dotfiles

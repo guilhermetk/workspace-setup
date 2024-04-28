@@ -1,16 +1,19 @@
 # Install nerd fonts
 - name: ensure fonts directory
+  tags: fonts
   file:
     path: "{{ lookup('env', 'HOME') }}/.fonts"
     state: directory
 
 - name: Font exists
+  tags: fonts
   become: true
   shell: "ls {{ lookup('env', 'HOME') }}/.fonts/FiraCode-Regular.ttf"
   register: font_exists
   ignore_errors: yes
 
 - name: Download Hack
+  tags: fonts
   when: font_exists is failed
   ansible.builtin.unarchive:
     src: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip

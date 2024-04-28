@@ -14,8 +14,10 @@
       ansible.builtin.apt:
         name:
           - git
-          - cargo
           - curl
+          - polybar
+          - feh
+          - picom
           - stow
           - build-essential
           - zsh

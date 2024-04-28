@@ -74,7 +74,7 @@
         depth: 1
 
     - name: Install dotfiles
-      ansible.builtin.cmd:
+      ansible.builtin.command:
         cmd: stow .
         chdir: ~/dotfiles
       

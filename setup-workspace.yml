@@ -26,6 +26,7 @@
           - fzf
           - zoxide
           - btop
+          - rofi
         state: present
 
     - name: Download Oh My Zsh installation script

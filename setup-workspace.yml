@@ -81,6 +81,9 @@
         cmd: stow .
         chdir: ~/dotfiles
 
+    - name: Install atuin
+      ansible.builtin.command:
+        cmd: bash <(curl https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh)
     # - name: Install nvm
     #   ansible.builtin.shell: >
     #     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash

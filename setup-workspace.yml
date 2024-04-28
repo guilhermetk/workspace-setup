@@ -40,7 +40,8 @@
       ansible.builtin.include_tasks:
         file: ./tasks/dotfiles.yml
 
-    - name: Run dotfiles install
+    - name: Run fonts install
+      tags: fonts
       ansible.builtin.include_tasks:
         file: ./tasks/fonts.yml
 

@@ -1,0 +1,27 @@
+- name: Ensure GPG is installed
+  become: true
+  ansible.builtin.apt:
+    name: gpg-agent
+    state: present
+
+- name: Add GitHub CLI key
+  become: true
+  ansible.builtin.apt_key:
+    url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+    state: present
+    validate_certs: true
+    keyring: /usr/share/keyrings/githubcli-archive-keyring.gpg
+
+- name: Add GitHub CLI repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main"
+    state: present
+    filename: github-cli
+
+- name: Install GitHub CLI
+  become: true
+  ansible.builtin.apt:
+    name: gh
+    state: present
+    update_cache: true

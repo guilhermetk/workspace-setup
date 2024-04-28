@@ -45,6 +45,11 @@
       ansible.builtin.include_tasks:
         file: ./tasks/fonts.yml
 
+    - name: Run github cli install
+      tags: fonts
+      ansible.builtin.include_tasks:
+        file: ./tasks/github-client.yml
+
     # Install brave browser
     - name: Check if keyring exists
       ansible.builtin.stat:

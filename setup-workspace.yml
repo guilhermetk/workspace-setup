@@ -70,7 +70,7 @@
       user:
         name: "{{ the_user }}"
         shell: /bin/zsh
- 
+
     - name: Download dotfiles repo # noqa: latest
       ansible.builtin.git:
         repo: https://github.com/guilhermetk/dotfiles.git
@@ -82,6 +82,23 @@
       ansible.builtin.command:
         cmd: stow .
         chdir: ~/dotfiles
+
+    - name: ensure fonts directory
+      file:
+        path: "{{ lookup('env', 'HOME') }}/.fonts"
+        state: directory
+
+    - name: Font exists
+      shell: "ls {{ lookup('env', 'HOME') }}/.fonts/Fira*Code"
+      register: font_exists
+      ignore_errors: yes
+
+    - name: Download Hack
+      when: font_exists is failed
+      ansible.builtin.unarchive:
+        src: https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip
+        dest: "{{ lookup('env', 'HOME') }}/.fonts/"
+        remote_src: yes
 
     # - name: Install nvm
     #   ansible.builtin.shell: >

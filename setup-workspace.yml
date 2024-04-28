@@ -133,11 +133,9 @@
 
     # Install slack via snap
     - name: Install Slack
-      community.general.snap:
-        name: slack
-        dangerous: true
-        classic: true
-        state: present
+      ansible.builtin.command:
+        cmd: sudo snap install slack
+        become: true
 
     # - name: Install nvm
     #   ansible.builtin.shell: >

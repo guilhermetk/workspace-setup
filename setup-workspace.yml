@@ -68,6 +68,11 @@
       ansible.builtin.include_tasks:
         file: ./tasks/1password.yml
 
+    - name: Run lazygit install
+      tags: lazygit
+      ansible.builtin.include_tasks:
+        file: ./tasks/lazygit.yml
+
     - name: Run node install
       tags: node
       ansible.builtin.include_tasks:

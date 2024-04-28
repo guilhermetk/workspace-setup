@@ -91,7 +91,8 @@
         state: directory
 
     - name: Font exists
-      shell: "ls {{ lookup('env', 'HOME') }}/.fonts/Fira*Code"
+      become: true
+      shell: "ls {{ lookup('env', 'HOME') }}/.fonts/FiraCode-Regular.ttf"
       register: font_exists
       ignore_errors: yes
 
@@ -136,6 +137,13 @@
       become: true
       ansible.builtin.command:
         cmd: sudo snap install slack
+
+    # Install 1password via deb
+    - name: Install 1Password
+      become: true
+      ansible.builtin.apt:
+        deb: https://downloads.1password.com/linux/debian/amd64/stable/1password-latest.deb
+        state: present
 
     # - name: Install nvm
     #   ansible.builtin.shell: >

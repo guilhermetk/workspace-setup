@@ -19,6 +19,7 @@
           - feh
           - picom
           - stow
+          - solaar
           - build-essential
           - zsh
           - alacritty

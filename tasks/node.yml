@@ -1,0 +1,22 @@
+- name: Install nvm
+  tags: node
+  ansible.builtin.shell: >
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+
+# - name: source .zshrc
+#   tags: node
+#   ansible.builtin.shell: source ~/.zshrc
+
+- name: node 18
+  tags: node
+  ansible.builtin.shell: nvm install 18
+
+- name: node 14
+  tags: node
+  ansible.builtin.shell: nvm install 14
+
+- name: node 8
+  tags: node
+  ansible.builtin.shell: nvm install 8

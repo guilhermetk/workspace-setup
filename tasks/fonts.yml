@@ -7,12 +7,12 @@
 
 - name: Font exists
   tags: fonts
-  become: true
-  shell: "ls {{ lookup('env', 'HOME') }}/.fonts/FiraCode-Regular.ttf"
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.fonts/FiraCodeNerdFont-Regular.ttf"
   register: font_exists
   ignore_errors: yes
 
-- name: Download Hack
+- name: Download Font
   tags: fonts
   when: font_exists is failed
   ansible.builtin.unarchive:

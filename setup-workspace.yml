@@ -17,6 +17,7 @@
           - unzip
           - curl
           - polybar
+          - kitty
           - feh
           - picom
           - stow
@@ -33,10 +34,12 @@
         state: present
 
     - name: Run zsh install
+      tags: zsh
       ansible.builtin.include_tasks:
         file: ./tasks/zsh.yml
 
     - name: Run dotfiles install
+      tags: dotfiles
       ansible.builtin.include_tasks:
         file: ./tasks/dotfiles.yml
 
@@ -46,54 +49,27 @@
         file: ./tasks/fonts.yml
 
     - name: Run github cli install
-      tags: fonts
+      tags: githubcli
       ansible.builtin.include_tasks:
         file: ./tasks/github-client.yml
 
-    # Install brave browser
-    - name: Check if keyring exists
-      ansible.builtin.stat:
-        path: /usr/share/keyrings/brave-browser-archive-keyring.gpg
-      register: keyring_file
+    - name: Run brave install
+      tags: brave
+      ansible.builtin.include_tasks:
+        file: ./tasks/brave.yml
 
-    - name: Get keyring file
-      ansible.builtin.get_url:
-        url: https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-        dest: "/usr/share/keyrings/brave-browser-archive-keyring.gpg"
-        mode: "0644"
-      when: not keyring_file.stat.exists
-      become: true
+    - name: Run slack install
+      tags: slack
+      ansible.builtin.include_tasks:
+        file: ./tasks/slack.yml
 
-    - name: Add Brave repository to list of repositories
-      become: true
-      ansible.builtin.copy:
-        dest: /etc/apt/sources.list.d/brave-browser-release.list
-        content: |
-          deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main
-        mode: "0644"
+    - name: Run 1password install
+      tags: 1password
+      ansible.builtin.include_tasks:
+        file: ./tasks/1password.yml
 
-    - name: Install Brave
-      ansible.builtin.apt:
-        name: brave-browser
-        state: present
-        update_cache: true
-      become: true
+    - name: Run node install
+      tags: node
+      ansible.builtin.include_tasks:
+        file: ./tasks/node.yml
 
-    # Install slack via snap
-    - name: Install Slack
-      become: true
-      ansible.builtin.command:
-        cmd: sudo snap install slack
-
-    # Install 1password via deb
-    - name: Install 1Password
-      become: true
-      ansible.builtin.apt:
-        deb: https://downloads.1password.com/linux/debian/amd64/stable/1password-latest.deb
-        state: present
-
-    # - name: Install nvm
-    #   ansible.builtin.shell: >
-    #     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-    #   args:
-    #     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"

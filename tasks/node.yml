@@ -5,18 +5,11 @@
   args:
     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
 
-# - name: source .zshrc
+#TODO find a way to install node versions
+# - name: node 18
+#   become: true
+#   become_user: "{{ the_user }}"
 #   tags: node
-#   ansible.builtin.shell: source ~/.zshrc
-
-- name: node 18
-  tags: node
-  ansible.builtin.shell: nvm install 18
-
-- name: node 14
-  tags: node
-  ansible.builtin.shell: nvm install 14
-
-- name: node 8
-  tags: node
-  ansible.builtin.shell: nvm install 8
+#   ansible.builtin.shell:
+#     cmd: nvm install 18
+#     executable: /bin/zsh

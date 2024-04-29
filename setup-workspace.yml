@@ -73,8 +73,17 @@
       ansible.builtin.include_tasks:
         file: ./tasks/lazygit.yml
 
+    - name: Run lazydocker install
+      tags: lazydocker
+      ansible.builtin.include_tasks:
+        file: ./tasks/lazydocker.yml
+
     - name: Run node install
       tags: node
       ansible.builtin.include_tasks:
         file: ./tasks/node.yml
 
+    - name: Run docker install
+      tags: docker
+      ansible.builtin.include_tasks:
+        file: ./tasks/docker.yml

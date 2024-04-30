@@ -1,0 +1,35 @@
+- name: Update apt repo and cache on all Debian/Ubuntu machines
+  tags: apt
+  become: yes
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install necessary applications
+  tags: apt
+  become: yes
+  ansible.builtin.apt:
+    name:
+      - btop
+      - build-essential
+      - curl
+      - fd-find
+      - feh
+      - flameshot
+      - fzf
+      - git
+      - golang
+      - kitty
+      - nala
+      - neovim
+      - pavucontrol
+      - picom
+      - polybar
+      - ripgrep
+      - rofi
+      - solaar
+      - stow
+      - unzip
+      - zoxide
+      - zsh
+    state: present

@@ -24,6 +24,7 @@
       - neovim
       - pavucontrol
       - picom
+      - playerctl
       - polybar
       - ripgrep
       - rofi

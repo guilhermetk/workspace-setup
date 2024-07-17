@@ -1,0 +1,162 @@
+- name: Ensure the target directory exists
+  tags: asksuite-repos
+  file:
+    path: /home/tisco/work/code
+    state: directory
+    mode: '0755'
+
+- name: Clone the repository asksuite-dev
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-dev.git'
+    dest: /home/tisco/work/code/asksuite-dev
+    version: HEAD
+    accept_hostkey: yes
+    # force: true
+    update: false
+    recursive: false
+
+
+- name: Clone the repository for asksuite-ativacao
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-ativacao.git'
+    dest: /home/tisco/work/code/asksuite-dev/asksuite-ativacao
+    version: HEAD
+    accept_hostkey: yes
+
+- name: Clone the repository for asksuite-botwebchat
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-botwebchat.git'
+    dest: /home/tisco/work/code/asksuite-dev/asksuite-botwebchat
+    version: HEAD
+    accept_hostkey: yes
+
+- name: Clone the repository for asksuite-cerberus
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-cerberus.git'
+    dest: /home/tisco/work/code/asksuite-dev/asksuite-cerberus
+    version: HEAD
+    accept_hostkey: yes
+
+- name: Clone the repository for asksuite-control
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-control.git'
+    dest: /home/tisco/work/code/asksuite-dev/asksuite-control
+    version: HEAD
+    accept_hostkey: yes
+
+- name: Clone the repository for asksuite-core
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-core.git'
+    dest: /home/tisco/work/code/asksuite-dev/asksuite-core
+    version: HEAD
+    accept_hostkey: yes
+
+- name: Clone the repository for asksuite-crawler
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-crawler.git'
+    dest: /home/tisco/work/code/asksuite-dev/asksuite-crawler
+    version: HEAD
+    accept_hostkey: yes
+
+- name: Clone the repository for asksuite-crawler-backend
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-crawler-backend.git'
+    dest: /home/tisco/work/code/asksuite-dev/asksuite-crawler-backend
+    version: HEAD
+    accept_hostkey: yes
+
+- name: Clone the repository for asksuite-dashboard
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-dashboard.git'
+    dest: /home/tisco/work/code/asksuite-dev/asksuite-dashboard
+    version: HEAD
+    accept_hostkey: yes
+
+- name: Clone the repository for asksuite-directline
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-directline.git'
+    dest: /home/tisco/work/code/asksuite-dev/asksuite-directline
+    version: HEAD
+    accept_hostkey: yes
+
+- name: Clone the repository for asksuite-generic-bot
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-generic-bot.git'
+    dest: /home/tisco/work/code/asksuite-dev/asksuite-generic-bot
+    version: HEAD
+    accept_hostkey: yes
+
+- name: Clone the repository for asksuite-lambda-ab-tests
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-lambda-ab-tests.git'
+    dest: /home/tisco/work/code/asksuite-dev/asksuite-lambda-ab-tests
+    version: HEAD
+    accept_hostkey: yes
+
+- name: Clone the repository for asksuite-lambda-crawler
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-lambda-crawler.git'
+    dest: /home/tisco/work/code/asksuite-dev/asksuite-lambda-crawler
+    version: HEAD
+    accept_hostkey: yes
+
+- name: Clone the repository for asksuite-lambda-tree-manager
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-lambda-tree-manager.git'
+    dest: /home/tisco/work/code/asksuite-dev/asksuite-lambda-tree-manager
+    version: HEAD
+    accept_hostkey: yes
+
+- name: Clone the repository for asksuite-nlp
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-nlp.git'
+    dest: /home/tisco/work/code/asksuite-dev/asksuite-nlp
+    version: HEAD
+    accept_hostkey: yes
+
+- name: Clone the repository for asksuite-nlp-classifier
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-nlp-classifier.git'
+    dest: /home/tisco/work/code/asksuite-dev/asksuite-nlp-classifier
+    version: HEAD
+    accept_hostkey: yes
+
+- name: Clone the repository for asksuite-openai-resolver
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-openai-resolver.git'
+    dest: /home/tisco/work/code/asksuite-dev/asksuite-openai-resolver
+    version: HEAD
+    accept_hostkey: yes
+
+- name: Clone the repository for asksuite-pixel
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-pixel.git'
+    dest: /home/tisco/work/code/asksuite-dev/asksuite-pixel
+    version: HEAD
+    accept_hostkey: yes
+
+- name: Clone the repository for asksuite-tracking
+  tags: asksuite-repos
+  git:
+    repo: 'git@bitbucket.org:paveisistemas-ondemand/asksuite-tracking.git'
+    dest: /home/tisco/work/code/asksuite-dev/asksuite-tracking
+    version: HEAD
+    accept_hostkey: yes

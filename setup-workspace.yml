@@ -10,28 +10,9 @@
         cache_valid_time: 3600
 
     - name: Install necessary applications
-      become: yes
-      ansible.builtin.apt:
-        name:
-          - git
-          - unzip
-          - curl
-          - polybar
-          - kitty
-          - feh
-          - picom
-          - stow
-          - solaar
-          - build-essential
-          - zsh
-          - neovim
-          - ripgrep
-          - fd-find
-          - fzf
-          - zoxide
-          - btop
-          - rofi
-        state: present
+      tags: apt
+      ansible.builtin.include_tasks:
+        file: ./tasks/apt-install.yml
 
     - name: Run zsh install
       tags: zsh
@@ -87,3 +68,8 @@
       tags: docker
       ansible.builtin.include_tasks:
         file: ./tasks/docker.yml
+
+    - name: Clone asksuite repos
+      tags: asksuite-repos
+      ansible.builtin.include_tasks:
+        file: ./asksuite/repos.yml

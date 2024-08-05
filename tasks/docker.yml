@@ -20,11 +20,6 @@
     state: latest
     update_cache: true
 
-- name: Install Docker Module for Python
-  tags: docker
-  pip:
-    name: docker
-
 - name: Update apt and install docker-compose
   tags: docker
   become: true

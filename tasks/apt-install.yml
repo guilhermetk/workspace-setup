@@ -12,6 +12,7 @@
     name:
       - btop
       - build-essential
+      - caffeine
       - curl
       - fd-find
       - feh
